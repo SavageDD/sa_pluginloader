@@ -85,21 +85,6 @@ private:
 	std::vector <std::string> tokens;
 };
 
-void Init()
-{
-	AllocConsole();
-	freopen("CONIN$", "r", stdin);
-	freopen("CONOUT$", "w", stdout);
-	freopen("CONOUT$", "w", stderr);
-
-	while (1)
-	{
-		printf("govno\n");
-		Sleep(1);
-	}
-	ExitThread(0);
-}
-
 typedef void(*entry_)();
 void LoadLibrarys(std::string path, std::vector<std::string> libs) {
 	for (int i = 0; i < libs.size(); i++) {
@@ -125,6 +110,8 @@ signed int __cdecl isAlreadyRunning() {
 
 	InputParser params(szCmdLine);
 	std::string path = params.getCmdOption("-module");
+	
+	//Module list
 	LoadLibrarys(path, std::vector<std::string>{
 		"\\module\\plugin.dll"
 	});
